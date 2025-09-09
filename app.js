@@ -4,6 +4,7 @@ import weatherData from './weatherData.js';
 
 const argv = yargs(process.argv.slice(2)).string(['city']).parse();
 
+// TEMP: check that the argument is being parsed properly
 // console.log(argv.city);
 
 function displayWeather(cityData) {
@@ -37,18 +38,15 @@ function run() {
 
 	// Get the specific data for the city passed in
 	let cityData = weatherData[cityKey];
-
-	// Display formatted data
-	// displayWeather(cityData);
-
-	// Handling nonexistent city in data
-
+    
 	console.log(chalk.blue(`\nFetching weather data for ${city}...`));
-
+    
 	setTimeout(() => {
-		if (cityKey in weatherData) {
+        if (cityKey in weatherData) {
+            // Display formatted info 
 			displayWeather(cityData);
 		} else {
+            // Handling nonexistent city in data
 			console.log(chalk.red(`\nSorry, weather data for '${city}' not found.`));
 		}
 	}, 1000);
